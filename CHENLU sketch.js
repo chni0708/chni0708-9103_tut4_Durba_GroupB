@@ -7,6 +7,12 @@ let concentricCircles = [];
 let whiteDotLayers = [];
 let yellowDotLayers = [];
 
+let randomOrNoiseArray = [0.2, 1.8, 0.6, 1.2, 1.6]; 
+//chenlu:These values act as scaling factors that control the size of the circles, with each value used to adjust the circle size by multiplying it with a base value
+let valueArrayLength = randomOrNoiseArray.length;
+//chenlu:This line gets the length of the randomOrNoiseArray and stores it in valueArrayLength. In this example, valueArrayLength is 5 because the array has five elements.
+
+
 // Set up the canvas and initialize circles
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -107,6 +113,8 @@ kCircle = [
     new SmallStrokeCircle(bigCircles[14], r * 0.07, null, color('#BE479A'), 30, true), //  circle 15
     new SmallStrokeCircle(bigCircles[14], r * 0.07, null, color('#F05656'), 15, true), //  circle 15
    
+    
+    
    
     new SmallStrokeCircle(bigCircles[15], r * 0.4, null, color('#F05641'), 15, true), // circle 16
     new SmallStrokeCircle(bigCircles[15], r * 0.3, null, color('#FFB6E3'), 10, true), // circle 16
@@ -283,14 +291,13 @@ class ConcentricCircle {
     }
   }
 }
-// White dot layers class
 class WhiteDotLayers {
   constructor(bigCircle, numLayers, numDots) {
     this.bigCircle = bigCircle;
     this.numLayers = numLayers;
     this.numDots = numDots;
-   
   }
+  
   display() {
     let x = width * this.bigCircle.xScale;
     let y = height * this.bigCircle.yScale;
@@ -300,20 +307,22 @@ class WhiteDotLayers {
         let angle = TWO_PI / this.numDots * i;
         let dotX = x + radius * cos(angle);
         let dotY = y + radius * sin(angle);
+        let size = 20 + randomOrNoiseArray[frameCount % valueArrayLength] * 50; // chenlu:frameCount % valueArrayLength makes frameCount loop from 0 to valueArrayLength - 1 (0 to 4 in this case), so each frame selects one value from randomOrNoiseArray in order. randomOrNoiseArray[frameCount % valueArrayLength] accesses one value per frame (like 0.5, 0.8, 0.3, etc.) to control the circle size. Finally, size is calculated as 20 + arrayValue * 50, where 20 is the base size, and arrayValue * 50 is the adjustment.
+        
         fill(255);
         noStroke();
-        ellipse(dotX, dotY, 20);
+        ellipse(dotX, dotY, size);
       }
     }
   }
 }
-// Yellow dot layers class
+
+
 class YellowDotLayers {
   constructor(bigCircle, numLayers, numDots) {
     this.bigCircle = bigCircle;
     this.numLayers = numLayers;
     this.numDots = numDots;
-    
   }
 
   display() {
@@ -327,7 +336,8 @@ class YellowDotLayers {
         let angle = TWO_PI / this.numDots * i;
         let dotX = x + radius * cos(angle);
         let dotY = y + radius * sin(angle);
-        ellipse(dotX, dotY, 20);
+        let size = 20 + randomOrNoiseArray[frameCount % valueArrayLength] * 50; // chenlu:frameCount % valueArrayLength makes frameCount loop from 0 to valueArrayLength - 1 (0 to 4 in this case), so each frame selects one value from randomOrNoiseArray in order. randomOrNoiseArray[frameCount % valueArrayLength] accesses one value per frame (like 0.5, 0.8, 0.3, etc.) to control the circle size. Finally, size is calculated as 20 + arrayValue * 50, where 20 is the base size, and arrayValue * 50 is the adjustment.
+        ellipse(dotX, dotY, size);
       }
     }
   }
@@ -340,7 +350,8 @@ function draw() {
   for (let circle of bigCircles) {
     circle.display();
   }
-   
+
+  
   // Draw concentric circles
   for (let concentric of concentricCircles) {
     concentric.display();
