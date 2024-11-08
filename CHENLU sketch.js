@@ -139,8 +139,8 @@ kCircle = [
 
   whiteDotLayers = [
     new WhiteDotLayers(bigCircles[5], 3, 18),
-    new WhiteDotLayers(bigCircles[7], 3, 12),
-    new WhiteDotLayers(bigCircles[9], 3, 12)
+    new WhiteDotLayers(bigCircles[7], 4, 12),
+    new WhiteDotLayers(bigCircles[9], 4, 12)
   ]
  yellowDotLayers = [
     new YellowDotLayers(bigCircles[0], 3, 12),
@@ -305,7 +305,7 @@ class WhiteDotLayers {
     let y = height * this.bigCircle.yScale;
     this.rotationAngle += 0.01;//chenlu 3 Increase rotation angle for animation
     for (let layer = 1; layer <= this.numLayers; layer++) {
-      let radius = this.bigCircle.r * 0.3 + layer * 30;
+      let radius = this.bigCircle.r * 0.2 + layer * 30;
       for (let i = 0; i < this.numDots; i++) {
         let angle = TWO_PI / this.numDots * i+this.rotationAngle;//chenlu3 adding rotation angle
         let dotX = x + radius * cos(angle);
