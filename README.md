@@ -24,7 +24,7 @@ Technical Explanation:
 I implemented a rotationAngle variable that increments with each draw() call, creating the smooth rotation effect. This angle is added to the base angle for each dot’s position calculation, allowing the dot layers to rotate continuously around the center.
 
 For natural, rhythmic size variations, I used a randomOrNoiseArray and a slowDownFactor. By checking if frameCount is a multiple of slowDownFactor, I controlled the frequency of size updates, so that dot sizes adjust only every few frames. This method leverages Perlin noise to achieve smooth transitions in size, creating a cohesive, visually pleasing effect without abrupt changes.
-![coding 1](UX/9103-A4/chni0708-9103_tut4_Durba_GroupB/picture/1.png)
+![alt text](image-1.png)
 ![coding 2](UX/9103-A4/chni0708-9103_tut4_Durba_GroupB/picture/2.png)
 ![coding 3](UX/9103-A4/chni0708-9103_tut4_Durba_GroupB/picture/3.png)
 ![coding 4](UX/9103-A4/chni0708-9103_tut4_Durba_GroupB/picture/4.png)
