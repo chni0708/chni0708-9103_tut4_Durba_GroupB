@@ -297,15 +297,17 @@ class WhiteDotLayers {
     this.bigCircle = bigCircle;
     this.numLayers = numLayers;
     this.numDots = numDots;
+    this.rotationAngle = 0;//chenlu3 Initialize the rotation angle of the white point
   }
   
   display() {
     let x = width * this.bigCircle.xScale;
     let y = height * this.bigCircle.yScale;
+    this.rotationAngle += 0.01;//chenlu 3 Increase rotation angle for animation
     for (let layer = 1; layer <= this.numLayers; layer++) {
       let radius = this.bigCircle.r * 0.3 + layer * 30;
       for (let i = 0; i < this.numDots; i++) {
-        let angle = TWO_PI / this.numDots * i;
+        let angle = TWO_PI / this.numDots * i+this.rotationAngle;//chenlu3 adding rotation angle
         let dotX = x + radius * cos(angle);
         let dotY = y + radius * sin(angle);
         let size = 20;
@@ -327,17 +329,20 @@ class YellowDotLayers {
     this.bigCircle = bigCircle;
     this.numLayers = numLayers;
     this.numDots = numDots;
+    this.rotationAngle = 0; // chenlu 3 Initialize rotation angle for yellow dots
+  
   }
 
   display() {
     let x = width * this.bigCircle.xScale;
     let y = height * this.bigCircle.yScale;
+    this.rotationAngle += 0.01; // chenlu 3 Increment rotation angle for animation
     fill('#fabd4d');
     noStroke();
     for (let layer = 1; layer <= this.numLayers; layer++) {
       let radius = this.bigCircle.r * 0.20 + layer * 30;
       for (let i = 0; i < this.numDots; i++) {
-        let angle = TWO_PI / this.numDots * i;
+        let angle = TWO_PI / this.numDots * i+this.rotationAngle; // chenlu 3 Add rotation angle;
         let dotX = x + radius * cos(angle);
         let dotY = y + radius * sin(angle);
         let size = 20;
