@@ -33,5 +33,7 @@ https://www.youtube.com/watch?v=zLl5sZ54__E
 
 
 3.Coding 
-![coding 1]picture/1.png
-![coding 1]![picture/1.png](https://github.com/chni0708/chni0708-9103_tut4_Durba_GroupB/blob/main/picture/1.png)
+[picture/1.png](https://github.com/chni0708/chni0708-9103_tut4_Durba_GroupB/blob/main/picture/1.png)
+[picture/2.png](https://github.com/chni0708/chni0708-9103_tut4_Durba_GroupB/blob/main/picture/2.png)
+[picture/3.png](https://github.com/chni0708/chni0708-9103_tut4_Durba_GroupB/blob/main/picture/3.png)
+[picture/4.png](https://github.com/chni0708/chni0708-9103_tut4_Durba_GroupB/blob/main/picture/4.png)
