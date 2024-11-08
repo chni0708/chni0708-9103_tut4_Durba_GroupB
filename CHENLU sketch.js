@@ -9,6 +9,7 @@ let yellowDotLayers = [];
 
 let randomOrNoiseArray = [0.2, 1.8, 0.6, 1.2, 1.6]; 
 //chenlu:These values act as scaling factors that control the size of the circles, with each value used to adjust the circle size by multiplying it with a base value
+let slowDownFactor = 8//chenlu2:slowDownFactor is set to 8, meaning that the size will only update every 8 frames, slowing down the animation.
 let valueArrayLength = randomOrNoiseArray.length;
 //chenlu:This line gets the length of the randomOrNoiseArray and stores it in valueArrayLength. In this example, valueArrayLength is 5 because the array has five elements.
 
@@ -307,8 +308,11 @@ class WhiteDotLayers {
         let angle = TWO_PI / this.numDots * i;
         let dotX = x + radius * cos(angle);
         let dotY = y + radius * sin(angle);
-        let size = 20 + randomOrNoiseArray[frameCount % valueArrayLength] * 50; // chenlu:frameCount % valueArrayLength makes frameCount loop from 0 to valueArrayLength - 1 (0 to 4 in this case), so each frame selects one value from randomOrNoiseArray in order. randomOrNoiseArray[frameCount % valueArrayLength] accesses one value per frame (like 0.5, 0.8, 0.3, etc.) to control the circle size. Finally, size is calculated as 20 + arrayValue * 50, where 20 is the base size, and arrayValue * 50 is the adjustment.
-        
+        let size = 20;
+        // chenlu2:This line checks if frameCount (which increases every frame) is a multiple of slowDownFactor (8 in this case).
+      //By doing this, size will only update once every 8 frames, instead of every frame, which makes the animation slower.
+        if (frameCount % slowDownFactor === 0) {
+          size = 20 + randomOrNoiseArray[frameCount / slowDownFactor % valueArrayLength] * 10;}
         fill(255);
         noStroke();
         ellipse(dotX, dotY, size);
@@ -336,7 +340,11 @@ class YellowDotLayers {
         let angle = TWO_PI / this.numDots * i;
         let dotX = x + radius * cos(angle);
         let dotY = y + radius * sin(angle);
-        let size = 20 + randomOrNoiseArray[frameCount % valueArrayLength] * 50; // chenlu:frameCount % valueArrayLength makes frameCount loop from 0 to valueArrayLength - 1 (0 to 4 in this case), so each frame selects one value from randomOrNoiseArray in order. randomOrNoiseArray[frameCount % valueArrayLength] accesses one value per frame (like 0.5, 0.8, 0.3, etc.) to control the circle size. Finally, size is calculated as 20 + arrayValue * 50, where 20 is the base size, and arrayValue * 50 is the adjustment.
+        let size = 20;
+        // Rate of update of control size
+        if (frameCount % slowDownFactor === 0) {
+          size = 20 + randomOrNoiseArray[frameCount / slowDownFactor % valueArrayLength] * 10;
+        }
         ellipse(dotX, dotY, size);
       }
     }
